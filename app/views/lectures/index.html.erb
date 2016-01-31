@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Lectures</h1>
-
+<h1 class="des" >Listing Lectures</h1>
+<br>
 <table>
   <thead>
     <tr>
-      <th>My file</th>
+      <th class="des1">List of files</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,7 +13,7 @@
   <tbody>
     <% @lectures.each do |lecture| %>
       <tr>
-        <td><%= lecture.my_file %></td>
+        <td  ><%= lecture.my_file.to_s.split('/').last %></td>
         <td><%= link_to 'Show', lecture %></td>
         <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
         <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Lecture', new_lecture_path %>
+<%= link_to 'upload a new file', new_lecture_path %>

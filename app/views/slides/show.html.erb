@@ -1,21 +1,24 @@
-<div>
 
+<center>
 <%= image_tag @slide.urlpage, :size => "900x700" %>
-</div>
+<%= form_for ([@slide, @comments.new]) do |f| %>
+   <div class="actions">
+    <%= f.label :Addcomment %>
+    <%= f.text_field :content %>
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= link_to "like", like_slide_path(@slide), method: :put  %>
+<%= @slide.get_upvotes.size %>
+<%= link_to "dislike", dislike_slide_path(@slide), method: :put  %>
+<%= @slide.get_downvotes.size %>
+
 <% @comments.each do |f|  %>
-<h1>hfs</h1>
+ <div class=<%= cycle("commentdesgin","commentdesgintwo") %>>
  <%=f.content %>
  <br>
+ </div>
+<% end %>
+</center>
 
-<% end %>
-<%= form_for ([@slide, @comments.new]) do |f| %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :content %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
 

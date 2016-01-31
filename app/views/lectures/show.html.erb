@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>My file:</strong>
-  <%= @lecture.my_file %>
+<p class="des">
+  <strong> your file:</strong>
+  <%= @lecture.my_file.to_s.split('/').last %>
 </p>
+   <br>
+   
   <% @slides.each do  |page| %>
-  <%= image_tag page.urlpage %>
- <%= link_to 'Show', [@lecture, page] %>
-  <br>	
+  <%= image_tag page.urlpage, :size => "300x280" %>
+   <%= link_to 'Show', [@lecture, page] %>
+ 	
   	<% end %>
-
-<%= link_to 'Edit', edit_lecture_path(@lecture) %> |
-<%= link_to 'Back', lectures_path %>
+<br>
+<%= link_to 'Back to list of the files', lectures_path %>

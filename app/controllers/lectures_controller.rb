@@ -1,6 +1,6 @@
 class LecturesController < ApplicationController
   before_action :set_lecture, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authorize, only: [:new, :edit, :update, :destroy]
   # GET /lectures
   # GET /lectures.json
   def index
@@ -39,7 +39,7 @@ class LecturesController < ApplicationController
       @lecture.slides.create(:urlpage => "#{@filename}page_#{ @counter }.png")
         @counter +=1
       end
-      redirect_to 'index'
+      redirect_to :controller => 'lecture', :action => 'index' 
 
 
 

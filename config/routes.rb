@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
-  resources :lectures
+  resources :sessions
+  resources :users
+  resources :lectures do 
+    resources :slides 
+  end
+ 
+  resources :slides do
+    resources :comments
+    member do
+    put "like", to: "slides#upvote"
+    put "dislike", to: "slides#downvote"
+  end
+end
+
+root to:'lectures#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

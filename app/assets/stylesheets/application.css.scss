@@ -1,0 +1,80 @@
+@import 'bootstrap';
+
+.actions input
+{
+  background-color: #7B68EE;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  padding: 12px 24px;
+  transition: background-color 0.5s;
+  text-decoration: none;
+  display: inline-block;
+}
+form textarea {
+
+  border: 1px solid transparent;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 20px 0 10px;
+  height: 10px;
+  padding: 16px;
+  transition: border 0.5s;
+  width: 200px;
+
+}
+.des
+{
+  background-color: #7E68EE;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 12px 24px;
+  transition: background-color 0.5s;
+  text-decoration: none;
+  display: inline-block;
+}
+.des1
+{
+
+  background-color: #fDE00F;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 12px 24px;
+  transition: background-color 0.5s;
+  text-decoration: none;
+  display: inline-block;
+}
+.ShowPage
+{
+    color: red;
+	
+}
+.commentdesgin
+{
+  width:80%;
+  color:#0000CD;
+  background-color: #B0C4DE;
+  margin-bottom: 10px;
+  padding: 20px;
+  font-size:15px;
+  font-family:purisa;
+}
+.commentdesgintwo
+{
+  width:80%;
+  color:#0000CD;
+  background-color:   #87CEFA;
+  margin-bottom: 5px;
+  padding: 20px;
+   font-size:15px;
+   font-family:purisa;
+}
+
+
