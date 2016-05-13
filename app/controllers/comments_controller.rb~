@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
 	def create
+        @lecture = Lecture.find(params[:lecture_id]) 
 	@sli =Slide.find(params[:slide_id])
 @comment = @sli.comments.create(comment_params)
 if @comment.save
-  redirect_to  slide_path(@sli)
+  redirect_to  [@lecture,@sli]
 end
 end
 def destroy

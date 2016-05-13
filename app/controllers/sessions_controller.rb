@@ -5,7 +5,7 @@ def create
  user = User.find_by_email(params[:email])
 if user && user.authenticate(params[:password])
 session[:user_id] = user.id
-redirect_to root_url, notice: "loggen In"
+redirect_to root_url, notice: "logged In!"
 else
 flash.now.alert = "Email or password is Invaild"
 render "new"
@@ -13,6 +13,6 @@ end
 end
 def destroy
 session[:user_id] = nil
-redirect_to root_url, notice: "logged out"
+redirect_to root_url, notice: "logged out!"
 end
 end

@@ -1,16 +1,18 @@
 class LecturesController < ApplicationController
   before_action :set_lecture, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize, only: [:new, :edit, :update, :destroy]
+  before_filter :authorize, only: [:new, :edit, :update, :destroy, :show, :index, :upvote, :downvote]
   # GET /lectures
   # GET /lectures.json
   def index
     @lectures = Lecture.all
   end
-
+def describtion
+end
   # GET /lectures/1
   # GET /lectures/1.json
   def show
     @slides =@lecture.slides(params[:urlpage])
+     @comments = @lecture.commentforlectures
     
   end
 
@@ -35,11 +37,11 @@ class LecturesController < ApplicationController
       @filename = @lecture.my_file.to_s.split('/').last
       @counter = 0
       @pdf.each do  |page|
-      page.save("./#{@filename}page_#{ @counter }.png")
+      page.save("app/assets/images/#{@filename}page_#{ @counter }.png")
       @lecture.slides.create(:urlpage => "#{@filename}page_#{ @counter }.png")
         @counter +=1
       end
-      redirect_to 'index'
+      redirect_to :controller => 'lectures', :action => 'index' 
 
 
 
@@ -60,6 +62,17 @@ class LecturesController < ApplicationController
       end
     end
   end
+def upvote
+  @lecture = Lecture.find(params[:id])
+ @lecture.liked_by current_user
+  redirect_to lecture_path(@lecture)
+end
+def downvote
+  @lecture = Lecture.find(params[:id])
+ @lecture.disliked_by current_user
+  redirect_to lecture_path(@lecture)
+end
+
 
   # DELETE /lectures/1
   # DELETE /lectures/1.json

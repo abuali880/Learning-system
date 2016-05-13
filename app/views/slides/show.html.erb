@@ -2,23 +2,31 @@
 <center>
 <%= image_tag @slide.urlpage, :size => "900x700" %>
 <%= form_for ([@slide, @comments.new]) do |f| %>
-   <div class="actions">
-    <%= f.label :Addcomment %>
-    <%= f.text_field :content %>
-    <%= f.submit %>
+   
+  
+<div class="addcommenttext">
+    <%= f.text_field :content, placeholder: "Add comment.." %>
+</div>
+<div class="addcommentbutton">
+ <%= f.submit "Post" %> 
   </div>
 <% end %>
+</br>
+<div class="btn btn-default">
 <%= link_to "like", like_slide_path(@slide), method: :put  %>
 <%= @slide.get_upvotes.size %>
+</div>
+<div class="btn btn-default">
 <%= link_to "dislike", dislike_slide_path(@slide), method: :put  %>
 <%= @slide.get_downvotes.size %>
-
+</div>
 <% @comments.each do |f|  %>
  <div class=<%= cycle("commentdesgin","commentdesgintwo") %>>
- <%=f.content %>
+ <%=f.content %><span class="co"><div class="btn btn-default"><%= link_to 'Delete Comment', [@slide,f],   method: :delete, data: { confirm: 'Are you sure?' } %></div></span>
  <br>
  </div>
 <% end %>
 </center>
+
 
 

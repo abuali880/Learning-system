@@ -1,16 +1,21 @@
-<h1>Log In</h1>
+
 
 <%= form_tag sessions_path do %>
-<div class = "field">
-<%= label_tag :email %><br/>
-<%= text_field_tag :email, params[:email] %>
-</div>
-<div class = "field">
-<%= label_tag :password %><br/>
-<%= password_field_tag :password %>
-</div>
-<div class="actions"><%= submit_tag "Log In" %></div>
-<% end %>
 
+<h3> <span class="label label-default"><%= label_tag :email %><br/></span></h3>
+<div class="input-group">
+  <span class="input-group-addon3" id="basic-addon2"></span>
+   <%= text_field_tag :email, params[:email], :class =>"form-control",  :placeholder => "Enter your E-mail"%>
+
+</div>
+
+
+
+<h3> <span class="label label-default"><%= label_tag :password %><br/></span></h3>
+
+<%= password_field_tag :password%>
+
+<div class="addcommentbutton"><%= submit_tag "Log In" %></div>
+<% end %>
 
 

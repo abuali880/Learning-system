@@ -1,16 +1,7 @@
 <p id="notice"><%= notice %></p>
-<h1><span class="label label-default">Files..</span></h1>
+
+<h1><span class="label label-default">Lectuers...</span></h1>
 <br>
-<%= form_tag lectures_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Files.." %>
-    <%= submit_tag "Search", :my_file => nil %>
-  </p>
-  <% if !@lectures.present? %>
-    <p>There are no files containing the term(s) <%= params[:search] %>.</p>
-  <% end %>
-<% end %>
-</br>
 <table>
   <thead>
     <tr>
@@ -22,7 +13,8 @@
   <tbody>
     <% @lectures.each do |lecture| %>
    <h4>File <span class="label label-default"><%= lecture.my_file.to_s.split('/').last %></span></h4>
-  
+      
+       </br>
 <div class="btn btn-default">
   <%= link_to 'show', lecture %></div>
      <div class="btn btn-default"><%= link_to 'Edit', edit_lecture_path(lecture) %></div>
@@ -33,8 +25,9 @@
 </table>
 
 <br>
-<div class="btn btn-info">
- <span class="badge"></span><%= link_to 'Upload your File', new_lecture_path %>
-</div>
+
+<button class="btn btn-info" type="button">
+  Upload your File <span class="badge"></span><%= link_to '', new_lecture_path %>
+</button>
 
 

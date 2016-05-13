@@ -1,4 +1,4 @@
 class Comment < ActiveRecord::Base
 	belongs_to :slide
-    
+      acts_as_votable
 end

@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+get 'lectures/describtion' =>"lectures#describtion"
   resources :sessions
   resources :users
-  resources :lectures do 
+  resources :lectures do
+    resources :commentforlectures
+member do
+    put "like", to: "lectures#upvote"
+    put "dislike", to: "lectures#downvote"
+  end
     resources :slides 
   end
  

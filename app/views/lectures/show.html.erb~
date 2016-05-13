@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p class="des">
-  <strong> Your file:</strong>
+  <strong> your file:</strong>
   <%= @lecture.my_file.to_s.split('/').last %>
 </p>
    <br>
@@ -27,15 +27,14 @@
   	
 <br>
 <%= form_for ([@lecture, @comments.new]) do |f| %>
-
+ <%= f.label :Addcomment %>
 <div class="addcommenttext">
-    <%= f.text_field :body , placeholder: "Add comment.."%>
+    <%= f.text_field :body %>
 </div>
 <div class="addcommentbutton">
- <%= f.submit "Post" %> 
+ <%= f.submit %> 
 <% end %>
 <br>
-</br>
 <div class="btn btn-default">
  <span class="badge"></span><%= link_to "like", like_lecture_path(@lecture), method: :put  %> <%= @lecture.get_upvotes.size %>
 </div>
@@ -43,8 +42,6 @@
 <%= link_to "dislike", dislike_lecture_path(@lecture), method: :put  %>
 <%= @lecture.get_downvotes.size %>
 </div>
-</br>
-</br>
 <% @comments.each do |f|  %>
  <div class=<%= cycle("commentdesgin","commentdesgintwo") %>>
  <%=f.body %><span class="co"><div class="btn btn-default"><%= link_to 'Delete Comment', [@lecture,f],   method: :delete, data: { confirm: 'Are you sure?' } %></div></span>

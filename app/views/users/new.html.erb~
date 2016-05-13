@@ -1,19 +1,44 @@
 <%= form_for(@user) do |f| %>
 
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this lecture from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h3><span class="label label-default">  <%= f.label :email %><br></span></h3>
+<div class="input-group">
+  <span class="input-group-addon3" id="basic-addon2">@example.com</span>
+    <%= f.text_field :email, :class =>"form-control",  :placeholder => "Enter your E-mail"%>
+
+</div>
+
+
+
+
+   <h3><span class="label label-default"> <%= f.label :password %><br></span></h3>
+<div class="input-group">
+  <span class="input-group-addon3" id="basic-addon2"></span>
+     <%= f.password_field :password , :class =>"form-control",  :placeholder => "Enter Password"%>
+
+
+</div>
+    <h3><span class="label label-default"><%= f.label :password_confirmation %><br></span></h3>
+   <div class="input-group">
+
+     <%= f.password_field :password_confirmation , :class =>"form-control",  :placeholder => "Enter E-mail"%>
+
+</div>
+
   
-<div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-<div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-<div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="addcommentbutton">
+    <%= f.submit "sign up" %>
   </div>
 <% end %>

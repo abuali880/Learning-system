@@ -1,0 +1,16 @@
+<h1><span class="label label-primary">Steps to upload your file</span></h1>
+<ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge">1</span>
+   You should log in
+  </li>
+<li class="list-group-item">
+    <span class="badge">2</span>
+   click on upload a new file
+  </li>
+<li class="list-group-item">
+    <span class="badge">3</span>
+   click on Create lectures
+  </li>
+</ul>
+

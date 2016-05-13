@@ -1,12 +1,14 @@
 class SlidesController < ApplicationController
+  before_filter :authorize, only: [:show, :upvote, :downvote]
 	def show
          #@lecture =Lecture.find(params[:lecture_id])
 		#@slides = @lecture.slides.find(params[:id])
 		#@comment = @slides.comments.new
 		#@comments = @slides.comments
-		@slide = Slide.find(params[:id])
+	@slide = Slide.find(params[:id])
         @comments = @slide.comments
 	end
+
 def upvote
   @slide = Slide.find(params[:id])
  @slide.liked_by current_user

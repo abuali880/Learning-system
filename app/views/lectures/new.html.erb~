@@ -1,8 +1,7 @@
 
 <h1> <span class="label label-default">New lecture</span></h1>
-<br>
+
 <%= render 'form' %>
-<br>
 <div class="btn btn-info">
  <span class="badge"></span><%= link_to 'Back', lectures_path %>
 </div>

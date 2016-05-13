@@ -1,16 +1,18 @@
 class LecturesController < ApplicationController
   before_action :set_lecture, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize, only: [:new, :edit, :update, :destroy]
+  before_filter :authorize, only: [:new, :edit, :update, :destroy, :show, :index, :upvote, :downvote]
   # GET /lectures
   # GET /lectures.json
   def index
-    @lectures = Lecture.all
+    @lectures = Lecture.search(params[:search])
   end
-
+def describtion
+end
   # GET /lectures/1
   # GET /lectures/1.json
   def show
     @slides =@lecture.slides(params[:urlpage])
+     @comments = @lecture.commentforlectures
     
   end
 
@@ -30,16 +32,16 @@ class LecturesController < ApplicationController
     @lecture.my_file = params[:file]
     if @lecture.save
       @f = @lecture.my_file.to_s.downcase
-      @pdf = Grim.reap(@lecture.my_file.to_s)
+      @pdf = Grim.reap(@lecture.my_file.current_path)
       @count = @pdf.count
       @filename = @lecture.my_file.to_s.split('/').last
       @counter = 0
       @pdf.each do  |page|
-      page.save("./#{@filename}page_#{ @counter }.png")
+      page.save("app/assets/images/#{@filename}page_#{ @counter }.png")
       @lecture.slides.create(:urlpage => "#{@filename}page_#{ @counter }.png")
         @counter +=1
       end
-      redirect_to :controller => 'lecture', :action => 'index' 
+      redirect_to :controller => 'lectures', :action => 'index' 
 
 
 
@@ -60,13 +62,24 @@ class LecturesController < ApplicationController
       end
     end
   end
+def upvote
+  @lecture = Lecture.find(params[:id])
+ @lecture.liked_by current_user
+  redirect_to lecture_path(@lecture)
+end
+def downvote
+  @lecture = Lecture.find(params[:id])
+ @lecture.disliked_by current_user
+  redirect_to lecture_path(@lecture)
+end
+
 
   # DELETE /lectures/1
   # DELETE /lectures/1.json
   def destroy
     @lecture.destroy
     respond_to do |format|
-      format.html { redirect_to lectures_url, notice: 'Lecture was successfully destroyed.' }
+      format.html { redirect_to lectures_url, notice: 'Lecture was successfully deleted.' }
       format.json { head :no_content }
     end
   end

@@ -11,7 +11,7 @@
     </div>
   <% end %>
   
-  <div class="submitbutton">
+  <div class="addcommentbutton">
     <%= f.file_field :my_file %>
   </div>
 <br>
